@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="<%= page.lang %>">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Eunakria &ndash; <%= page.title %></title>
+	<link rel="icon" href="/favicon.svg" type="image/svg" />
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Fira+Mono&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+	<meta name="author" content="Linus Parker" />
+	<meta property="og:title" content="<%= page.title %>" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="https://eunakria.github.io/<%= linkPath %>" />
+	<meta property="og:locale" content="<%= page.lang %>" />
+
+	<link rel="stylesheet" href="/main.css">
+	<script defer src="/bundle.js"></script>
+</head>
+
+<body>
+	<nav>
+		<a class="narrow" href="<%= baseURL %>/feed.xml" title="<%= t('nav/atom_feed') %>" aria-label="<%= t('nav/atom_feed') %>">
+			<svg class="feather">
+				<use href="/feather-sprite.svg#rss" />
+			</svg>
+		</a>
+		<a href="<%= baseURL %>/posts">
+			<svg class="feather">
+				<use href="/feather-sprite.svg#pen-tool" />
+			</svg>
+			<span><%= t('nav/posts') %></span>
+		</a>
+		<a href="<%= baseURL %>/" class="sn"><span>Eunakria</span></a>
+		<a href="<%= baseURL %>/projects">
+			<svg class="feather">
+				<use href="/feather-sprite.svg#briefcase" />
+			</svg>
+			<span><%= t('nav/projects') %></span>
+		</a>
+		<a href="javascript:void(0)" class="narrow" title="<%= t('nav/switch_theme') %>"
+			aria-label="<%= t('nav/switch_theme') %>" id="theme-toggle">
+			<svg class="feather">
+				<use href="/feather-sprite.svg#moon" />
+			</svg>
+		</a>
+	</nav>
+
+	<%- content %>
+
+	<div class="grey-bg">
+	<div class="container">
+	<footer>
+		<p class="copyright">&copy; 2021 Linus Parker</p>
+
+		<div class="footer-grid">
+			<div>
+				<p><%= t('footer/another_lang') %></p>
+				<p class="select">
+					<select id="lang-select">
+					<% for (let [lang, fullName] of site.allLangs) {%>
+						<option value="<%= lang %>"
+							<% if (lang === page.lang) {%> selected <%}%>
+						><%= fullName %></option>
+					<%} %>
+					</select>
+				</p>
+			</div>
+			<div>
+				<p><%= t('footer/links') %></p>
+				<ul>
+					<li><a href="https://github.com/eunakria/eunakria.github.io/"><%= t('footer/page_source') %></a></li>
+					<li><a href="<%= baseURL %>/"><%= t('footer/back_home') %></a></li>
+				</ul>
+			</div>
+		</div>
+	</footer>
+	</div>
+	</div>
+</body>
+
+</html>

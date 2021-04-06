@@ -1,0 +1,25 @@
+nav:
+  posts: Posts
+  projects: Proyectos
+  switch_theme: Cambiar tema
+  atom_feed: Feed Atom
+
+charge:
+  subtitle: 'Desorrollador de software, diseñador de sitios web, conlanger'
+  pronouns: EXCLUDE
+  timezone: Zona horaria
+  my_timezone: Hora del este
+
+footer:
+  another_lang: 'Ver esta página en otro idioma:'
+  links: 'Enlaces útiles:'
+  page_source: Mirar a la fuente de página
+  back_home: Volver al inicio
+
+pageTitles:
+  home: Inicio
+  archive: Archivo de Posts
+  portfolio: Cartera
+
+front_page:
+  more: Ver más posts

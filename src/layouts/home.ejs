@@ -1,0 +1,70 @@
+---
+layout: default
+---
+
+<div class="charge">
+	<div>
+		<p class="large">Eunakria</p>
+		<p><%= t('charge/subtitle') %></p>
+		
+		<% if (t('charge/pronouns') === 'EXCLUDE') {%>
+			<div class="charge-grid narrow">
+		<%} else {%>
+			<div class="charge-grid">
+		<%} %>
+
+			<% if (t('charge/pronouns') !== 'EXCLUDE') {%>
+				<div class="fact-tag">
+					<svg class="feather"> <use href="/feather-sprite.svg#user" /> </svg>
+					<p><%= t('charge/pronouns') %></p>
+					<p><%= t('charge/my_pronouns') %></p>
+				</div>
+			<%} %>
+
+			<div class="fact-tag">
+				<svg class="feather"> <use href="/feather-sprite.svg#clock" /> </svg>
+				<p><%= t('charge/timezone') %></p>
+				<p><%= t('charge/my_timezone') %><br><small>(UTC-5, UTC-4 DST)</small></p>
+			</div>
+			<div class="fact-tag">
+				<svg class="feather"> <use href="/feather-sprite.svg#github" /> </svg>
+				<p>GitHub</p>
+				<p><a href="https://github.com/eunakria/">@eunakria</a></p>
+			</div>
+			<div class="fact-tag">
+				<svg class="feather"> <use href="/feather-sprite.svg#twitter" /> </svg>
+				<p>Twitter</p>
+				<p><a href="https://twitter.com/eunakria/">@eunakria</a></p>
+			</div>
+			<div class="fact-tag">
+				<svg class="feather"> <use href="/feather-sprite.svg#message-square" /> </svg>
+				<p>Discord</p>
+				<p>Eunakria#1552</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<%- content %>
+
+	<% for (let post of page.posts) {%>		
+		<hr>
+		<a class="post-link" href="<%= baseURL %><%= post.path %>">
+			<div class="post">
+				<div class="post-date">
+					<% let d = skel => gl.formatDate(post.date, { skeleton: skel }) %>
+					<span><%= d('MMM') %></span>
+					<span><%= d('d') %></span>
+					<span><%= d('y') %></span>
+				</div>
+				<div class="post-info">
+					<div class="post-title">
+						<span><%= post.title %></span>
+					</div>
+					<div class="post-snippet"><%- post.excerpt %></div>
+				</div>
+			</div>
+		</a>
+	<%} %>
+</div>

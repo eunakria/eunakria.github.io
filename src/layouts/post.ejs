@@ -1,0 +1,14 @@
+---
+layout: default
+---
+
+<div class="short-charge">
+	<div class="container">
+		<h1 class="page-title"><%= page.title %></h1>
+
+		<p><%= gl.formatDate(page.date, { date: 'medium' }) %></p>
+	</div>
+</div>
+<div class="container">
+	<%- content %>
+</div>

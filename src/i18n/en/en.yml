@@ -1,0 +1,26 @@
+nav:
+  posts: Posts
+  projects: Projects
+  switch_theme: Switch theme
+  atom_feed: Atom feed
+
+charge:
+  subtitle: 'Software developer, web designer, conlanger'
+  pronouns: Pronouns
+  my_pronouns: he/him
+  timezone: Timezone
+  my_timezone: Eastern Time
+
+footer:
+  another_lang: 'See this page in another language:'
+  links: 'Helpful links:'
+  page_source: Check out the page source
+  back_home: Go back home
+
+page_titles:
+  home: Home
+  archive: Post Archive
+  portfolio: Portfolio
+
+front_page:
+  more: See more posts

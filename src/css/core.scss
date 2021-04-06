@@ -1,0 +1,64 @@
+$lhs: darken(#d000c0, 5%);
+$rhs: darken(#8000a0, 5%);
+
+$blh: lighten(#d000c0, 35%);;
+$brh: lighten(#8000a0, 35%);;
+
+//$main: darken($lhs, 29%);
+$main: #101010;
+
+$header-grad: linear-gradient(70deg, $lhs, $rhs);
+$bright-grad: linear-gradient(70deg, $blh, $brh);
+
+body, .light {
+	--subtext-color: #404040;
+	--line-color: #c0c0c0;
+	--bg: white;
+	--bg-transparent: #{rgba(white, 0)};
+	--fg: black;
+	--bright-grad: #{$header-grad};
+}
+
+@mixin dark {
+	a, .post-title span {
+		background: $bright-grad;
+		background-clip: text;
+		color: transparent;
+	}
+
+	.grey-bg {
+		background: #181818;
+	}
+}
+
+.dark {
+	--subtext-color: white;
+	--line-color: #{darken($lhs, 20%)};
+	--bg-transparent: #{rgba($main, 0)};
+	--bg: #{$main};
+	--fg: white;
+	--bright-grad: #{$bright-grad};
+
+	@include dark;
+}
+
+@mixin scroll-line {
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+
+	&::after {
+		content: '';
+		position: fixed;
+		top: 64px;
+		width: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		height: 1px;
+		background: white;
+		transition: width 0.2s;
+
+		.scrolled & {
+			width: 80%;
+		}
+	}
+}
+
