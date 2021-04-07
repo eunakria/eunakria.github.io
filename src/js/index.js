@@ -1,4 +1,5 @@
 const $ = x => document.querySelector(x)
+const $$ = x => document.querySelectorAll(x)
 
 let chargeText = $('.charge .large')
 if (chargeText === null) {
@@ -80,3 +81,40 @@ $('#lang-select').addEventListener('change', evt => {
 
 	window.location.pathname = newP
 })
+
+let archiveYearList = $('.archive-year-list')
+if (archiveYearList !== undefined) {
+	let heads = Array.from($$('.archive-year-head'))
+	let listEls = Array.from($$('.archive-year-list li'))
+
+	window.addEventListener('scroll', () => updateListHighlight())
+	updateListHighlight() // Once when the page initializes
+
+	function updateListHighlight() {
+		let tops = heads.map(el => el.getBoundingClientRect().top)
+
+		let headIdx = findLastIndex(tops, i => i <= 64+8)
+		if (headIdx === -1) {
+			headIdx = 0
+		}
+
+		for (let [liIdx, el] of listEls.entries()) {
+			console.log(liIdx, headIdx)
+			if (liIdx === headIdx) {
+				el.classList.add('selected')
+			} else {
+				el.classList.remove('selected')
+			}
+		}
+	}
+}
+
+function findLastIndex(arr, cond) {
+	for (let idx = arr.length - 1; idx > -1; idx--) {
+		if (cond(arr[idx])) {
+			return idx
+		}
+	}
+
+	return -1
+}

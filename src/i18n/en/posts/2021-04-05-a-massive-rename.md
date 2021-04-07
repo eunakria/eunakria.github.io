@@ -42,7 +42,7 @@ So, say hello to Eunakria! It's the same me you know and love<sup><a href="#fn-1
 
 *"Well, why 'Eunakria'?"*
 
-<p class="indent">Eunakria is the word for 'fox' in one of my conlangs, or constructed languages, named Oksit. It's a nice word; it sounds euphonous, and it has a nice meaning. I want to come off as a pleasant, well-natured person, so I chose the word Eunakria to symbolize that. As an added bonus, it's almost perfectly unique; as far as I know, the word exists in no major language and the usernames <code>Eunakria</code> and <code>eunakria</code> are exceedingly rare.</p>
+<p class="indent">Eunakria is the word for 'fox' in one of my conlangs, or constructed languages, named Mitra. It's a nice word; it sounds euphonous, and it has a nice meaning. I want to come off as a pleasant, well-natured person, so I chose the word Eunakria to symbolize that. As an added bonus, it's almost perfectly unique; as far as I know, the word exists in no major language and the username <code>eunakria</code> is exceedingly rare.</p>
 
 *"How do you pronounce it?"*
 

@@ -1,0 +1,56 @@
+---
+layout: default
+---
+
+<div class="short-charge">
+	<div class="container">
+		<h1 class="page-title"><%= page.title %></h1>
+	</div>
+</div>
+<div class="split-container">
+<div class="container">
+	<div class="archive-year-list">
+		<h2> <span><%= t('archive/year') %></span> </h2>
+		<ul>
+			<% let years = page.posts.map(i => i.date.getUTCFullYear())
+				.filter((el, i, arr) => arr.indexOf(el) === i) %>
+			<% for (let y of years) {%>
+				<li> <a class="quiet-link" href="#y<%= y %>">
+					<span><%= y %></span>
+				</a> </li>
+			<%} %>
+		</ul>
+	</div>
+</div>
+
+<div class="container">
+	<%- content %>
+
+	<% let prevYear = Infinity %>
+	<% let firstIter = true %>
+	<% for (let post of page.posts) {%>
+
+		<% let curYear = post.date.getUTCFullYear() %>
+		<% if (curYear < prevYear) {%>
+			<% prevYear = curYear %>
+			<% if (!firstIter) {%></ul><%} %>
+			<h2 class="archive-year-head">
+				<a class="page-anchor" id="y<%= curYear %>"></a>
+				<%= curYear %>
+			</h2>
+			<ul>
+		<%} %>
+
+		<li> <a class="post-link" href="<%= baseURL %><%= post.path %>">
+			<div class="post-title">
+				<%= gl.formatDate(post.date, { skeleton: 'MMMd' }) %> &ndash;
+				<span><%= post.title %></span>
+			</div>
+			<div class="post-snippet archive-snippet"><%- post.excerpt %></div>
+		</a> </li>
+
+	<% firstIter = false %>
+	<%} %>
+	</ul>
+</div>
+</div>

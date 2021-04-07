@@ -48,7 +48,7 @@ layout: default
 <div class="container">
 	<%- content %>
 
-	<% for (let post of page.posts) {%>		
+	<% for (let post of page.posts.slice(0, 5)) {%>		
 		<hr>
 		<a class="post-link" href="<%= baseURL %><%= post.path %>">
 			<div class="post">
@@ -66,5 +66,10 @@ layout: default
 				</div>
 			</div>
 		</a>
+	<%} %>
+	<% if (page.posts.length > 5) {%>
+		<div style="text-align: center; text-transform: uppercase; margin: 32px 0;">
+			<a href="<%= baseURL %>/posts"><%= t('front_page/more') %></a>
+		</div>
 	<%} %>
 </div>

@@ -100,7 +100,7 @@ function buildPages(cb) {
 					))
 				)
 
-				postData.push(pageTools.compilePage(postSource, lang,
+				insertSorted(postData, pageTools.compilePage(postSource, lang,
 					`${outDir}/${outPath}`, {
 						linkPath: outPath,
 						useMarkdown: postSource.match(/\.md$/),
@@ -160,11 +160,41 @@ function buildPages(cb) {
 	function toDir(str) {
 		return str.replace(/(index)?\.(md|html)$/, '/index.html')
 	}
+
+	function insertSorted(array, el) {
+		if (array.length === 0) {
+			array.push(el)
+			return
+		}
+
+
+
+		// if (array.length > 1)
+		if (array[0].date < el.date) {
+			array.unshift(el)
+			return
+		}
+		for (let idx = 0; idx < array.length - 1; idx++) {
+			if (array[idx].date > el.date && array[idx+1].date < el.date) {
+				array.splice(idx+1, 0, el)
+				return
+			}
+		}
+		// else
+		array.push(el)
+	}
 }
 
 async function clean(cb) {
 	await del('out/')
 }
 
-exports.default = parallel( buildPages(), buildCSS, buildJS, buildRes )
+let buildPagesC = buildPages()
+
+exports.default = parallel( buildPagesC, buildCSS, buildJS, buildRes )
 exports.clean = clean
+
+exports.pages = buildPagesC
+exports.css = buildCSS
+exports.js = buildJS
+exports.res = buildRes
