@@ -58,6 +58,7 @@ function compilePage(inFile, lang, outFile, options={}) {
 
 	// Extract an excerpt of 2 paragraphs
 	let excerpt = ''
+	let shortExcerpt = ''
 	let dom = JSDOM.fragment(htmlFragment)
 	let parsExtracted = 0
 	for (let child of dom.children) {
@@ -69,6 +70,10 @@ function compilePage(inFile, lang, outFile, options={}) {
 			break
 		}
 		excerpt += ' ' + child.innerHTML
+		if (parsExtracted > 1) {
+			continue
+		}
+		shortExcerpt += ' ' + child.innerHTML
 	}
 
 	// Set up some classes, then feed the JSDOM instance back
@@ -95,6 +100,7 @@ function compilePage(inFile, lang, outFile, options={}) {
 		content: htmlFragment,
 		baseURL: getBase(lang),
 		linkPath: cleanPath,
+		excerpt: shortExcerpt,
 
 		gl: gl,
 		t: (...args) => gl.formatMessage(...args),
@@ -138,10 +144,13 @@ function compilePage(inFile, lang, outFile, options={}) {
 	})
 
 	// Send it all back.
-	fs.mkdirSync(pathTools.dirname(outFile), {
+	let trueOut = frontMatter.out === undefined
+		? outFile
+		: `out/${frontMatter.out}`
+	fs.mkdirSync(pathTools.dirname(trueOut), {
 		recursive: true,
 	})
-	fs.writeFileSync(outFile, result)
+	fs.writeFileSync(trueOut, result)
 
 	return {
 		title: frontMatter.title,
