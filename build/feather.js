@@ -13,6 +13,7 @@ const desiredIcons = [
 	'moon',
 	'pen-tool',
 	'rss',
+	'sun',
 	'twitter',
 	'user',
 ]
