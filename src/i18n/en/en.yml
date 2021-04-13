@@ -17,6 +17,16 @@ footer:
   page_source: Check out the page source
   back_home: Go back home
 
+page_charge:
+  reading_time: 'Reading time: {time} min'
+
+infobox:
+  proof_title: Note – Article Proof
+  proof_desc: >-
+    You're probably seeing this article because I asked for feedback on it.
+    It's unlisted on my main page thus far, but if you're reading this right
+    now, I'd love your feedback!
+
 page_titles:
   home: Home
   archive: Post Archive

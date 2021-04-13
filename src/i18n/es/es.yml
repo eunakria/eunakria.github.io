@@ -16,6 +16,9 @@ footer:
   page_source: Mirar a la fuente de página
   back_home: Volver al inicio
 
+page_charge:
+  reading_time: 'Tiempo de lectura: {time} min'
+
 pageTitles:
   home: Inicio
   archive: Archivo de Posts

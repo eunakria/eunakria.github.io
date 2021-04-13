@@ -1,9 +1,11 @@
 const fs           = require('fs')
 
-const { src, dest, parallel }
+const { src, dest, parallel, series }
 				   = require('gulp')
 const rename       = require('gulp-rename')
 const del          = require('del')
+
+const feather      = require('./build/feather.js')
 
 const pageTools    = require('./build/compile-page.js')
 const { Feed }     = require('feed')
@@ -54,6 +56,11 @@ function buildRes(cb) {
 		.pipe(dest('out/'))
 }
 
+async function buildFeather(cb) {
+	await feather.build()
+	cb()
+}
+
 function buildPages(cb) {
 	let eachI18n = []
 
@@ -100,12 +107,15 @@ function buildPages(cb) {
 					))
 				)
 
-				insertSorted(postData, pageTools.compilePage(postSource, lang,
+				let compiled = pageTools.compilePage(postSource, lang,
 					`${outDir}/${outPath}`, {
 						linkPath: outPath,
 						useMarkdown: postSource.match(/\.md$/),
 					})
-				)
+
+				if (!compiled.proof) {
+					insertSorted(postData, compiled)
+				}
 			}
 
 			for (let pageSource of glob.sync(
@@ -191,7 +201,8 @@ async function clean(cb) {
 
 let buildPagesC = buildPages()
 
-exports.default = parallel( buildPagesC, buildCSS, buildJS, buildRes )
+exports.default = parallel(buildPagesC, buildCSS, buildJS,
+	series(buildRes, buildFeather) )
 exports.clean = clean
 
 exports.pages = buildPagesC

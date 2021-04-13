@@ -4,12 +4,21 @@ const pathTools = require('path')
 const cldrData       = require('cldr-data')
 const ejs            = require('ejs')
 const { JSDOM }      = require('jsdom')
+const GithubSlugger  = require('github-slugger')
 const Globalize      = require('globalize')
+const hljs           = require('highlight.js')
 const { minify }     = require('html-minifier')
 const MarkdownIt     = require('markdown-it')
 const yaml           = require('js-yaml')
 
-const md = new MarkdownIt('commonmark')
+const md = new MarkdownIt('commonmark', {
+	highlight: (str, lang) => {
+		if (lang && hljs.getLanguage(lang)) {
+			return hljs.highlight(str, { language: lang }).value
+		}
+		return ''
+	}
+})
 
 const baseInfo = {
 	site: {
@@ -76,9 +85,61 @@ function compilePage(inFile, lang, outFile, options={}) {
 		shortExcerpt += ' ' + child.innerHTML
 	}
 
+	// Calculate reading time
+	let wordCount = dom.textContent.match(/\S+/g)?.length || 0
+	let readingTime = Math.max(Math.floor(wordCount / 300), 1)
+
+	// Add slugs
+	let slugger = new GithubSlugger()
+	for (let el of dom.querySelectorAll('h1,h2,h3,h4,h5,h6')) {
+		el.innerHTML = `<a class="page-anchor"></a>` + el.innerHTML
+		el.firstChild.id = slugger.slug(el.textContent)
+	}
+
+	// Create the table of contents
+	// God this code is so cursed but I will die on the hill of JSDOM.fragment
+	let toc = dom.querySelector('#table-of-contents')
+	if (toc !== null) {
+		toc.innerHTML += '<ol></ol>'
+		let currentList = lastChild(toc)
+		let currentLevel 
+
+		for (let headEl of dom.querySelectorAll('h1,h2,h3,h4,h5,h6')) {
+			let thisLevel = parseInt(headEl.tagName.substr(1))
+			if (currentLevel === undefined) {
+				currentLevel = thisLevel
+			}
+
+			/* if and */ while (thisLevel > currentLevel) {
+				lastChild(currentList).innerHTML += '<ol></ol>'
+				currentList = lastChild(lastChild(currentList))
+				currentLevel++
+			}
+			
+			/* else if and */ while (thisLevel < currentLevel) {
+				currentList = currentList.parentElement
+				currentLevel--
+			}
+
+			currentList.innerHTML += '<li><a href=""></a></li>'
+			let link = lastChild(lastChild(currentList))
+			link.setAttribute('href', `#${headEl.querySelector('a').id}`)
+			link.textContent = headEl.textContent
+		}
+
+		function lastChild(el) {
+			return el.children[el.children.length - 1]
+		}
+	}
+
 	// Set up some classes, then feed the JSDOM instance back
 	for (let el of dom.querySelectorAll('img')) {
 		el.classList.add('body-img')
+	}
+	for (let el of dom.querySelectorAll('blockquote')) {
+		el.innerHTML =
+			'<svg class="quote"><use href="/quote.svg#q"/></svg>' +
+			el.innerHTML
 	}
 	htmlFragment = Array.from(dom.children).map(i => i.outerHTML).join('')
 
@@ -101,6 +162,7 @@ function compilePage(inFile, lang, outFile, options={}) {
 		baseURL: getBase(lang),
 		linkPath: cleanPath,
 		excerpt: shortExcerpt,
+		readingTime,
 
 		gl: gl,
 		t: (...args) => gl.formatMessage(...args),
@@ -156,6 +218,7 @@ function compilePage(inFile, lang, outFile, options={}) {
 		title: frontMatter.title,
 		excerpt,
 		date: frontMatter.date,
+		proof: frontMatter.proof,
 		path: cleanPath,
 	}
 }

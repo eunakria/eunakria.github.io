@@ -6,9 +6,28 @@ layout: default
 	<div class="container">
 		<h1 class="page-title"><%= page.title %></h1>
 
-		<p><%= gl.formatDate(page.date, { date: 'medium' }) %></p>
+		<p class="post-head">
+			<span class="post-head-tag">
+				<svg class="feather"> <use href="/feather-sprite.svg#calendar" /> </svg>
+				<span><%= gl.formatDate(page.date, { date: 'medium' }) %></span>
+			</span>
+			<span class="post-head-tag">
+				<svg class="feather"> <use href="/feather-sprite.svg#clock" /> </svg>
+				<span><%= t('page_charge/reading_time', { time: readingTime }) %></span>
+			</span>
+		</p>
 	</div>
 </div>
 <div class="container">
+	<% if (page.proof) {%>
+		<div class="infobox">
+			<div class="infobox-icon">
+				<svg class="feather lg"> <use href="/feather-sprite.svg#lightbulb" /> </svg>
+			</div>
+			<p class="infobox-title"><%= t('infobox/proof_title') %></p>
+			<p class="infobox-data"><%= t('infobox/proof_desc') %></p>
+		</div>
+	<%} %>
+
 	<%- content %>
 </div>

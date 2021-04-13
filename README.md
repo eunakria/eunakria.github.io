@@ -12,7 +12,7 @@ This repo's contents are under one of two licenses:
 
 The following external assets are used:
 
-1. [Feather Icons](https://github.com/feathericons/feather) (MIT License)
+1. [Lucide Icons](https://github.com/lucide-icons/lucide) (ISC License)
 
 2. [Inter](https://rsms.me/inter/) (OFL License)
 

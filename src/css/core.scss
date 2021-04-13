@@ -17,18 +17,17 @@ body, .light {
 	--bg-transparent: #{rgba(white, 0)};
 	--fg: black;
 	--bright-grad: #{$header-grad};
-}
+	--grey-bg: #e8e8e8;
+	--dark-grey-bg: var(--grey-bg);
+	--light-grey-bg: #f8f8f8;
 
-@mixin dark {
-	a, .post-title span {
-		background: $bright-grad;
-		background-clip: text;
-		color: transparent;
-	}
-
-	.grey-bg {
-		background: #181818;
-	}
+	.red, .hljs-built_in, .hljs-keyword { color: #f04040; }
+	.orange { color: #f08040; }
+	.yellow, .hljs-number { color: #808020; }
+	.green, .hljs-string { color: #10c040; }
+	.blue, .hljs-function { color: #4080f0; }
+	.purple { color: #{$rhs}; }
+	.hljs-comment { color: #808080; }
 }
 
 .dark {
@@ -38,8 +37,15 @@ body, .light {
 	--bg: #{$main};
 	--fg: white;
 	--bright-grad: #{$bright-grad};
+	--grey-bg: #181818;
+	--dark-grey-bg: #404040;
+	--light-grey-bg: var(--grey-bg);
 
-	@include dark;
+	.red, .hljs-built_in, .hljs-keyword { color: #f06060; }
+	.yellow, .hljs-number { color: #f0f040; }
+	.green, .hljs-string { color: #40f080; }
+	.blue, .hljs-function { color: #60a0f0; }
+	.hljs-comment { color: #a0a0a0; }
 }
 
 @mixin scroll-line {
