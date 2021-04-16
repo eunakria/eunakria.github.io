@@ -1,13 +1,13 @@
 ---
 layout: post
 title:  "The inaccessible terminal"
-date:   2021-04-11
-proof:  true
+date:   2021-04-16
+proof:  false
 ---
 
 Accessibility (hereafter refered to as a11y) comes in many forms. It refers to accommodation for people with physical disablities, people who struggle with understanding complex models, or even simply fully able people in environments or constraints that prevent them from using applications to their full capability.
 
-It's a well-known fact at this point that the traditional UNIX-like terminal model (hereafter the shell) is notorious for committing a lot of sins on this aspect, and modern UI/UX designers generally see the shell as a keep example of what *not* to do. To quote *The Unix Hater's Handbook,* a humorous take on the bad design of UNIX from the early Macintosh era:
+It's a well-known fact at this point that the traditional UNIX-like terminal model (hereafter the shell) is notorious for committing a lot of sins on this aspect, and modern UI/UX designers generally see the shell as a keen example of what *not* to do. To quote *The Unix Hater's Handbook,* a humorous take on the bad design of UNIX from the early Macintosh era:
 
 > Ken Thompson has an automobile which he helped design. Unlike most automobiles, it has neither speedometer, nor gas gauge, nor any of the other numerous idiot lights which plague the modern driver. Rather, if the driver makes a mistake, a giant “?” lights up in the center of the dashboard. “The experienced driver,” says Thompson, “will usually know what’s wrong.”
 
@@ -55,11 +55,11 @@ The first complaint of mine is strange command names. A lot of commands are give
 
 Some others are named after strange, complicated, or obscured names.
 
-* `awk` is a domain-specific language for text transformation in shell script, and it's named after its creators, Alfred **A**ho, Peter **W**einberg and Brian **K**erninghan.
+* `awk` is a domain-specific language for text transformation in shell script, and it's [named after its creators](https://en.wikipedia.org/w/index.php?title=AWK&oldid=1005866427#History), Alfred **A**ho, Peter **W**einberg and Brian **K**erninghan.
 
-* `grep` stands for a mnemonic in `ed`, `g/re/p`, or **g**et a **r**egular **e**xpression and **p**rint. Once you know that, you can tell it's a tool to filter incoming text by regex.
+* `grep` [stands for a mnemonic](https://en.wikipedia.org/w/index.php?title=Grep&oldid=1017322849) in `ed`, `g/re/p`, or **g**lobally search for a **r**egular **e**xpression and **p**rint. Once you know that, you can tell it's a tool to filter incoming text by regex.
 
-* `dd` stands for **c**arbon **c**opy, but since `cc` is already taken for **C c**ompiler and `cd` is already **c**hange **d**irectory, they had to improvise.
+* `dd` [stands for **c**opy and **c**onvert](https://groups.google.com/g/comp.unix.misc/c/LbLTa00Jnvg?pli=1), but since `cc` is already taken for **C c**ompiler and `cd` is already **c**hange **d**irectory, they had to improvise.
 
 The UNIX shell can be compared, to an extent, to Microsoft's modern, data structure driven, .NET powered alternative called PowerShell. Many first-time users of PowerShell mock it for its verbose `Verb-Noun` commands, with such ridiculous names as `Get-ChildItem` to list the contents of a directory. It has saner, shorter aliases such as `ls` for these unwieldy commands, though they sometimes conflict with brand names, as is the case with `wget`.
 
@@ -206,7 +206,7 @@ Testing with a screen reader is an imperative part of my work as a web designer.
 
 Usually, I rock a fairly customized setup, complete with `zsh` with syntax highlighting, a heavily customized Neovim, etc.. but right now, we're going back to the basics. I'm using a fairly default Ubuntu setup right now. Plain `bash`, fairly uncustomized `vim`, unmodified `man` paged with `less`. Pay attention to what you hear. Notice how the screen reader can never tell what to read to you.
 
-[TBD]
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 38.3712%;"><iframe src="https://streamable.com/o/l8p1pp" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen scrolling="no" allow="encrypted-media"></iframe></div>
 
 This is the most unfortunate reality of the shell. It's fundamentally exclusionary, even ableist. A11y was never a huge concern back in the UNIX days, but now, the shell simply doesn't cut it for folks who need a helping hand. It's frustrating to work with if you can't *see* the terminal &ndash; which is a little ironic, because one of the things the shell is most lauded for is not having a graphical interface, only text.
 
@@ -225,3 +225,5 @@ For one, I would suggest to adopt the model of the notebook. The notebook and sh
 However, I believe that the same principles could be adapted to the terminal. Obviously, it wouldn't operate the same as the notebook &ndash; the terminal should still prioritize being able to enter code quickly rather than create a readable document out of a shell session. Similarly, pipeline programming and live output are still hugely useful tools and intuitive mental models, and programs should be able to instate their own prompts, etc.; rather than notebook functions, which only have a single return value like in most programming languages.
 
 Atop that, I believe that graphical layout programs should be exported into separate windows. Applications should open graphical windows if they need it, rather than trying to cram everything into a single, convoluted interface.
+
+With these changes, I believe that the shell could become a truly useful window into the insides of modern computers &ndash; desktops, servers, embedded devices, etc.. Right now, the ubiquitous standards (POSIX et al.) have some egregious flaws that make it frustrating to newcomers and folks with disabilities, but I believe that a fundamental overhaul can turn the same principle around into a truly incredible, intuitive environment.
