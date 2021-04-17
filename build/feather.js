@@ -8,6 +8,7 @@ const desiredIcons = [
 	'briefcase',
 	'calendar',
 	'clock',
+	'github',
 	'lightbulb',
 	'message-square',
 	'moon',
