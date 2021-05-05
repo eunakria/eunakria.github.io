@@ -5,7 +5,7 @@ date:   2021-04-16
 proof:  false
 ---
 
-Accessibility (hereafter refered to as a11y) comes in many forms. It refers to accommodation for people with physical disablities, people who struggle with understanding complex models, or even simply fully able people in environments or constraints that prevent them from using applications to their full capability.
+Accessibility (hereafter referred to as a11y) comes in many forms. It refers to accommodation for people with physical disabilities, people who struggle with understanding complex models, or even simply fully able people in environments or constraints that prevent them from using applications to their full capability.
 
 It's a well-known fact at this point that the traditional UNIX-like terminal model (hereafter the shell) is notorious for committing a lot of sins on this aspect, and modern UI/UX designers generally see the shell as a keen example of what *not* to do. To quote *The Unix Hater's Handbook,* a humorous take on the bad design of UNIX from the early Macintosh era:
 
@@ -13,7 +13,7 @@ It's a well-known fact at this point that the traditional UNIX-like terminal mod
 
 UNIX was a product of its time. It was a set of building blocks, scripting tools that all tried their absolute best to stay out of the end user's way, in part because that gave the user more freedom to do what they want, and in part because a program that did too much was too *slow* to use.
 
-The irony is that a lot of things that are today done the "UNIX way" &ndash; chains of `sed` scripts and imperative configuration files galore &ndash; are the slowest and clunkiest parts of modern computers. Linux computers that use shell script-based inits boot slower than those that use inits with their own daemon management. Terminal windows become slower to start wiith every program you install that has to load itself into the `$PATH`.
+The irony is that a lot of things that are today done the "UNIX way" &ndash; chains of `sed` scripts and imperative configuration files galore &ndash; are the slowest and clunkiest parts of modern computers. Linux computers that use shell script-based inits boot slower than those that use inits with their own daemon management. Terminal windows become slower to start with every program you install that has to load itself into the `$PATH`.
 
 One thing remains, and that is the power of the shell. Well, not "the" shell itself, as it existed way back in the day, and modern users of the shell are eager to point that out. Modern users don't use the original Bourne shell; they may instead use `bash` or `zsh` or `fish`. They will set a flag for `ls` that allows it to use colors. They will use `perl -pe` whenever their complicated regex doesn't work with plain `sed -E`.
 
@@ -214,7 +214,7 @@ This is also what upsets me the most about anything in the shell. Never mind the
 
 It's impossible at this point to retrofit the terminal with some sort of compatibility layer for assistive tech. Modern UIs think in terms of hierarchy; you have boxes inside boxes, text inside panels inside views. Terminal UI is flat, even hacky; you have to lay out everything yourself. Modern terminal text editors have fair amounts of code to calculate the width of text, because monospace isn't truly monospace &ndash; find out how much space that escape sequence will take, or that composed emoji, or even distinguish between Latin (single-width) and CJK (double-width) characters.
 
-This is all already written code. UI frameworks have figured out text layout for developers years ago. Terminal programs have to rewrite all of that, and each program has its own bespoke layout system, utterly innavegable labrynths of abstractions. Assistive technology cannot dream to understand it all, especially when all it's exposed to is the control codes that tell the cursor to move back and forth to print data.
+This is all already written code. UI frameworks have figured out text layout for developers years ago. Terminal programs have to rewrite all of that, and each program has its own bespoke layout system, utterly innavegable labyrinths of abstractions. Assistive technology cannot dream to understand it all, especially when all it's exposed to is the control codes that tell the cursor to move back and forth to print data.
 
 ## Conclusion
 

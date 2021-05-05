@@ -27,13 +27,13 @@ infobox:
     It's unlisted on my main page thus far, but if you're reading this right
     now, I'd love your feedback!
 
-page_titles:
-  home: Home
-  archive: Post Archive
-  portfolio: Portfolio
-
 front_page:
   more: See more posts
 
 archive:
   year: Year
+
+comments:
+  flavor_text: >-
+    Tell me what I got right or wrong! Did this help you? Do you have any other
+    questions? I'm all ears.

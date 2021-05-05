@@ -69,8 +69,20 @@ function compilePage(inFile, lang, outFile, options={}) {
 	let excerpt = ''
 	let shortExcerpt = ''
 	let dom = JSDOM.fragment(htmlFragment)
+
+	// "Clone" of the original DOM that we can modify safely, to strip <a>
+	// elements for the excerpts
+	let excerptDOM = new JSDOM('')
+	let edDoc = excerptDOM.window.document
+	edDoc.body.innerHTML = htmlFragment
+	for (let aEl of edDoc.querySelectorAll('a')) {
+		let span = edDoc.createElement('span')
+		span.innerHTML = aEl.innerHTML
+		aEl.parentElement.replaceChild(span, aEl)
+	}
+
 	let parsExtracted = 0
-	for (let child of dom.children) {
+	for (let child of edDoc.body.children) {
 		if (child.tagName.toLowerCase() !== 'p') {
 			continue
 		}

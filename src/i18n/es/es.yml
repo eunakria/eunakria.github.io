@@ -19,13 +19,20 @@ footer:
 page_charge:
   reading_time: 'Tiempo de lectura: {time} min'
 
-pageTitles:
-  home: Inicio
-  archive: Archivo de Posts
-  portfolio: Cartera
+infobox:
+  proof_title: Nota – prueba de artículo
+  proof_desc: >-
+    Estás leyendo este artículo porque te pide feedback sobre ello. Aún no está
+    incluido en mi página principal, pero si lo lees ahora, 1me encantaría
+    recibir tus comentarios!
 
 front_page:
   more: Ver más posts
 
 archive:
   year: Año
+
+comments:
+  flavor_text: >-
+    ¡Dime lo que hice bien o mal! ¿Esto te ayudó? ¿Tienes algúna otra pregunta?
+    Soy todo oídos.
